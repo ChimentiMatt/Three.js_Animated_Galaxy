@@ -1,3 +1,9 @@
+uniform float uSize;
+
+attribute float aScale;
+
+varying vec3 vColor;
+
 void main()
 {
     /**
@@ -11,6 +17,12 @@ void main()
     /**
     *  Size
     */
-    gl_PointSize = 2.0;
+    gl_PointSize = uSize * aScale;
+    // makes the scale of pixes change to bigger or smaller depending on how close to camera
+    gl_PointSize *= (1.0 / - viewPosition.z);
 
+    /**
+    *  Color
+    */
+    vColor = color;
 }    
